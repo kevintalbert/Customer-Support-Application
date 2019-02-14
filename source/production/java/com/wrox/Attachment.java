@@ -1,5 +1,7 @@
 package com.wrox;
 
+//test of commit
+
 public class Attachment
 {
     private String name;
