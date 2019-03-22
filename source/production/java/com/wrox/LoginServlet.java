@@ -1,29 +1,54 @@
 package com.wrox;
 
 
+import java.beans.Statement;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.*;
+import java.util.Hashtable;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.util.Hashtable;
-import java.util.Map;
 
 @WebServlet(
         name = "loginServlet",
         urlPatterns = "/login"
 )
+/*/
+	Kevin Talbert
+	ktalber3@uncc.edu
+	21 March 2019
+/*/
 public class LoginServlet extends HttpServlet
 {
     private static final Map<String, String> userDatabase = new Hashtable<>();
 
     static {
-        userDatabase.put("Nicholas", "password");
-        userDatabase.put("Sarah", "drowssap");
-        userDatabase.put("Mike", "wordpass");
-        userDatabase.put("John", "green");
+    	
+        //userDatabase.put("Nicholas", "password");
+        //userDatabase.put("Sarah", "drowssap");
+        //userDatabase.put("Mike", "wordpass");
+        //userDatabase.put("John", "green");
+        
+    	try{  
+            Class.forName("com.mysql.cj.jdbc.Driver");  
+            Connection con=DriverManager.getConnection(  
+            "jdbc:mysql://localhost:3306/customersupport","root","password");  
+            //here customer-support is database name, root is username and password is password
+            Statement stmt=con.createStatement();  
+            ResultSet rs=stmt.executeQuery("select * from User;");  
+            while(rs.next())  
+            userDatabase.put(rs.getString(2), rs.getString(5));
+            con.close();  
+            }catch(Exception e){ System.out.println(e);}
+    	
     }
 
     @Override
