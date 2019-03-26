@@ -21,9 +21,11 @@ import javax.servlet.http.HttpSession;
         name = "loginServlet",
         urlPatterns = "/login"
 )
-/*/
-	Hello
-/*/
+/*
+	Kevin Talbert
+	ktalber3@uncc.edu
+	21 March 2019
+*/
 public class LoginServlet extends HttpServlet
 {
     private static final Map<String, String> userDatabase = new Hashtable<>();
