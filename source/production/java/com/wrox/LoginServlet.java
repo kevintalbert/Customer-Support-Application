@@ -22,9 +22,7 @@ import javax.servlet.http.HttpSession;
         urlPatterns = "/login"
 )
 /*/
-	Kevin Talbert
-	ktalber3@uncc.edu
-	21 March 2019
+	Hello
 /*/
 public class LoginServlet extends HttpServlet
 {
